@@ -1,7 +1,7 @@
 # Project Output Paths
 $modOutputPath = "TempBuild"
-$solutionName = "p4gpc.tinyadditions.csproj"
-$publishName = "p4gpc.tinyadditions.zip"
+$solutionName = "bulbyvr.autoadvancetoggle.csproj"
+$publishName = "bulbyvr.autoadvancetoggle.zip"
 $publishDirectory = "Publish"
 
 [Environment]::CurrentDirectory = $PWD

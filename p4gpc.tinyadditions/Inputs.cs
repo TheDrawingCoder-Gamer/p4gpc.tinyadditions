@@ -1,4 +1,4 @@
-﻿using p4gpc.tinyadditions.Configuration;
+﻿
 using Reloaded.Hooks.Definitions;
 using Reloaded.Hooks.Definitions.X86;
 using Reloaded.Hooks.Definitions.Enums;
@@ -11,7 +11,7 @@ using System.Text;
 using static Reloaded.Hooks.Definitions.X86.FunctionAttribute;
 using Reloaded.Memory.Sources;
 
-namespace p4gpc.tinyadditions
+namespace bulbyvr.autoadvancetoggle
 {
     class Inputs
     {
@@ -31,7 +31,6 @@ namespace p4gpc.tinyadditions
         private int _baseAddress;
 
         // Current mod configuration
-        public Config Configuration { get; set; }
 
         enum Input
         {
@@ -49,10 +48,9 @@ namespace p4gpc.tinyadditions
             Square = 0x8000
         };
 
-        public Inputs(ILogger logger, IReloadedHooks hooks, Config configuration)
+        public Inputs(ILogger logger, IReloadedHooks hooks)
         {
             // Initialise private variables
-            Configuration = configuration;
             _logger = logger;
             _hooks = hooks;
             _memory = new Memory();

@@ -1,18 +1,16 @@
-﻿using p4gpc.tinyadditions.Configuration;
-using p4gpc.tinyadditions.Configuration.Implementation;
-using Reloaded.Hooks.ReloadedII.Interfaces;
+﻿using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
 using Reloaded.Mod.Interfaces.Internal;
 using System;
 
-namespace p4gpc.tinyadditions
+namespace bulbyvr.autoadvancetoggle
 {
     public class Program : IMod
     {
         /// <summary>
         /// Your mod if from ModConfig.json, used during initialization.
         /// </summary>
-        private const string MyModId = "p4gpc.tinyadditions";
+        private const string MyModId = "bulbyvr.autoadvancetoggle";
 
         /// <summary>
         /// Used for writing text to the console window.
@@ -24,10 +22,6 @@ namespace p4gpc.tinyadditions
         /// </summary>
         private IModLoader _modLoader;
 
-        /// <summary>
-        /// Stores the contents of your mod's configuration. Automatically updated by template.
-        /// </summary>
-        private Config _configuration;
 
         /// <summary>
         /// An interface to Reloaded's the function hooks/detours library.
@@ -47,31 +41,12 @@ namespace p4gpc.tinyadditions
             _logger = (ILogger)_modLoader.GetLogger();
             _modLoader.GetController<IReloadedHooks>().TryGetTarget(out _hooks);
 
-            // Your config file is in Config.json.
-            // Need a different name, format or more configurations? Modify the `Configurator`.
-            // If you do not want a config, remove Configuration folder and Config class.
-            var configurator = new Configurator(_modLoader.GetDirectoryForModId(MyModId));
-            _configuration = configurator.GetConfiguration<Config>(0);
-            _configuration.ConfigurationUpdated += OnConfigurationUpdated;
+
 
             /* Your mod code starts here. */
-            _inputs = new Inputs(_logger, _hooks, _configuration);
+            _inputs = new Inputs(_logger, _hooks);
         }
 
-        private void OnConfigurationUpdated(IConfigurable obj)
-        {
-            /*
-                This is executed when the configuration file gets updated by the user
-                at runtime.
-            */
-
-            // Replace configuration with new.
-            _configuration = (Config)obj;
-            _logger.WriteLine($"[{MyModId}] Config Updated: Applying");
-
-            // Apply settings from configuration.
-            // ... your code here.
-        }
 
         /* Mod loader actions. */
         public void Suspend()
